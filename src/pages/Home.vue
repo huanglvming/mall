@@ -9,8 +9,10 @@
 			</div>
 			<div class="cash">提现</div>
 		</div>
-		<div class="list">
-			<Goods v-for="item in items" :msg="item"></Goods>
+		<div class="list-item" v-for="item in items">
+			<router-link :to="{name:'details',params:{obj:item}}">
+				<Goods :msg="item"></Goods>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -19,6 +21,7 @@
 	import Goods from "../components/Goods.vue"
 	export default{
 		name: 'Home',
+		props: ['meta'],
 		data(){
 			return {
 				info: {},
@@ -34,13 +37,15 @@
 				if(res.data.code === 1000){
 					this.info = res.data.data;
 					this.items = res.data.data.items;
-					console.log(this.items);
 				}
 			}).catch(err =>{
 				console.log(err);
 			});
 		},
 		methods:{
+			getUserInfo(){
+				return this.$axios.get('mall/item/list?limit=20');
+			},
 			getUserInfo: function(){
 				return this.$axios.get('mall/item/list?limit=20');
 			},

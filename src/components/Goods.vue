@@ -1,6 +1,6 @@
 <template>
 	<div class="goods-item">
-		<img src="https://photo.l99.com/" :src="msg.image" alt="">
+		<img :src="'https://photo.l99.com/' + msg.image" alt="">
 		<p class="goods-title">{{msg.name}}</p>
 		<div class="goods-details">
 			<div class="goods-value">{{msg.price}}</div>
@@ -13,9 +13,11 @@
 </template>
 
 <script>
+	import utils from '../assets/js/utils.js'
 	export default{
 		name: 'Goods',
 		props: ['msg'],
+		utils,
 		data(){
 			return{
 				
@@ -35,6 +37,9 @@
 			width: 168px;
 			height: 168px;
 		}
+	}
+	.goods-item:nth-child(odd){
+		border-right: 1px solid #dcdcdc;
 	}
 	.goods-title{
 		text-align: left;

@@ -1,5 +1,6 @@
 const utils = {
 	urlPrefix: 'https://apinyx.chuangshangapp.com/',
+	photoPrefix: 'https://photo.l99.com/', 
 	request: function(paras) { //获取url参数
 		var url = location.href;
 		var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
